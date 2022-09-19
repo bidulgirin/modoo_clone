@@ -1,0 +1,70 @@
+a{
+  text-decoration: none;
+  color:#333;
+}
+html,body{
+  font-size: 17px;
+  width:100%;
+}
+.wrapper{
+  width:100%;
+  background:rgb(243, 237, 237);
+}
+.header{
+  position:fixed;
+  width:100%;
+  height:70px;
+  background-color: rgb(35, 35, 35);
+}
+.header_wrap{
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.logo{
+  padding-left:40px;
+  padding-top:20px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.logo a{
+  display: block;
+}
+
+.logo a > div{
+  display: block;
+  background-position:bottom center;
+  background-repeat: no-repeat;
+  padding:0 3px;
+}
+.naver{
+  width:49px;
+  height:13px;
+  background-size:49px;
+  background-image: url('../images/logo/Naver_Logotype.svg.png');
+}
+.modoo{
+  
+  width:86px;
+  height:23px;
+  background-size:86px;
+  background-image: url('../images/logo/A1505452394923_modoo.png');
+}
+.gnb{
+  display: flex;
+  
+  align-items: center;
+}
+.gnb a{
+  color:white;
+}
+
+
+.section{
+  height: 100vh;
+  text-align: center;
+  align-items: center;
+}
