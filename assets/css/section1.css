@@ -1,0 +1,69 @@
+/* intro part */
+.section1_swiper {
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh;
+  }
+.intro {
+  position: relative;
+  background-image: url("../images/background/pexels-vlada-karpovich-4050308.jpg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.intro_cont {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 40px;
+  color: white;
+}
+.intro_title {
+  font-size: 70px;
+}
+.intro_des {
+  font-family: "Pretendard-Regular";
+  font-weight: 100;
+  font-size: 1.2em;
+  line-height: 35px;
+  margin: 50px 0;
+}
+.intro_button {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+.intro_button li {
+  width: 46%;
+  background: #414141;
+  border-radius: 3px;
+  font-size: 1.3em;
+}
+.intro_button li:first-child {
+  background-color: #00d600;
+}
+.intro_button a {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 20px 30px;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.531);
+  box-sizing: border-box;
+}
+/*video*/
+.video_page{
+  position: relative;
+  width:100%;
+  overflow: hidden;
+}
+.video_page video{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}

@@ -3,20 +3,128 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>모두!</title>
+	<title>모두! - 클론 사이트</title>
 
 	<!--파비콘 설정 -->
-	<link rel="shortcut icon" href="images/favicon.png">
+	<link rel="shortcut icon" href="https://www.modoo.at/favicon_v1.ico?20220908101923">
 	<!--모바일 멀티 아이콘 사이즈 설정 -->
-	<link rel="apple-touch-icon" sizes="57x57" href="images/icon57.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="images/icon114.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="https://www.modoo.at/favicon_v1.ico?20220908101923">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://www.modoo.at/favicon_v1.ico?20220908101923">
 	<!-- script -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="./assets/js/T.js"></script>
-	<script src="./assets/js/jquery.easing.js"></script>
 	<script src="./assets/js/jquery.mousewheel.js"></script>
+	<!--style -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 	<link rel="stylesheet" href="./assets/css/common.css">
+	<link rel="stylesheet" href="./assets/css/section1.css">
+	<link rel="stylesheet" href="./assets/css/section2.css">
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+	<script type="module">
+		import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js'
+
+		// const wrapper = new Swiper('.main', {
+		// 	loop: false,
+		// 	// Navigation arrows
+
+		// 	// And if we need scrollbar
+		// 	parallax: true,
+		// });
+		const section1_swiper = new Swiper('.section1_swiper', {
+			loop: false,
+			// Navigation arrows
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+			speed: 700,
+			pagination: {
+				el: '.swiper-pagination',
+				type: 'bullets',
+			},
+			on: {
+				transitionStart: function () {
+
+					var videos = document.querySelectorAll('video');
+
+					Array.prototype.forEach.call(videos, function (video) {
+						video.pause();
+						function hello() {
+							const header = document.querySelector(".header");
+							const footer = document.querySelector(".footer");
+							header.style.transition = "all 0.5s";
+							footer.style.transition = "all 0.5s";
+							header.style.opacity = 1;
+							footer.style.opacity = 1;
+						}
+						hello();
+					});
+
+
+				},
+
+				transitionEnd: function () {
+					var activeIndex = this.activeIndex;
+
+					if (activeIndex > 0) {
+						var activeSlide = document.getElementsByClassName('video_page')[activeIndex - 1];
+						var activeSlideVideo = activeSlide.getElementsByTagName('video')[0];
+						activeSlideVideo.play();
+						function disa() {
+							const header = document.querySelector(".header");
+							const footer = document.querySelector(".footer");
+							header.style.transition = "all 0.5s";
+							footer.style.transition = "all 0.5s";
+							header.style.opacity = 0;
+							footer.style.opacity = 0;
+						}
+						disa();
+					}
+
+
+				},
+
+			},
+		});
+		var menu = [
+			'<li class="on"><img src="./assets/images/slide/human.png"></li>',
+			'<li><img src="./assets/images/slide/human.png"></li>',
+			'<li><img src="./assets/images/slide/human.png"></li>',
+			'<li><img src="./assets/images/slide/human.png"></li>',
+		]
+		var section2_swiper = new Swiper('.section2_swiper', {
+			loop: true,
+			parallax: true,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+				renderBullet: function (index, className) {
+					return '<ul class="' + className + '">' + (menu[index]) + '</ul>';
+				},
+			},
+			speed: 700,
+			// Navigation arrows
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+		})
+
+		const swiper_phone = new Swiper('.swiper_phone', {
+			loop: false,
+			// Navigation arrows
+
+			// And if we need scrollbar
+			controller: {
+				inverse: true,
+			},
+			autoplay: {
+				delay: 1400,
+			},
+			parallax: true
+		});
+	</script>
 </head>
 
 
@@ -47,7 +155,7 @@
 						<a href="#">업종별 템플릿</a>
 					</li>
 				</ul>
-				<ul>
+				<ul class="header_login">
 					<li>
 						<a href="#"> 로그인 </a>
 					</li>
@@ -60,96 +168,162 @@
 				</ul>
 			</div>
 		</header>
-		<main>
-			<section class="page main_slider">
-				<div class="slide">
-					<h2>누구나 쉽게 무료로 만드는 홈페이지</h2>
-					<p>PC는 물론 스마트폰에서 쉽게 만들고 편리하게 쓰는<br />
-						스마트 홈페이지, modoo! 지금 바로 시작하세요
-					</p>
-					<ul>
-						<li>
-							<a href="#">나도 시작하기</a>
-						</li>
-						<li>
-							<a href="#">사용방법 영상보기</a>
-						</li>
-					</ul>
-				</div>
-				<div class="slide">
-					<video src=""></video>
-				</div>
-
-			</section>
-			<div class="page example_slider">
-				<div class="ex1 slide">
-					<div class="phone_wrap">
-						<div class="swiper_container">
-							<div class="swiper-wrapper">
-								<div class="item"></div>
-								<div class="item"></div>
-								<div class="item"></div>
-								<div class="item"></div>
-							</div>
+		<main class="main">
+			<div class="section1_swiper page">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide intro">
+						<div class="intro_cont">
+							<h2 class="intro_title">누구나 쉽게 무료로<br /> 만드는 홈페이지</h2>
+							<p class="intro_des">PC는 물론 스마트폰에서 쉽게 만들고 편리하게 쓰는<br />
+								스마트 홈페이지, modoo! 지금 바로 시작하세요
+							</p>
+							<ul class="intro_button">
+								<li>
+									<a href="#">나도 시작하기</a>
+								</li>
+								<li>
+									<a href="#">사용방법 영상보기</a>
+								</li>
+							</ul>
 						</div>
 
 					</div>
-					<div>
-						<h2>자주가는 동네 식당</h2>
-						<p>메뉴안내/가격표/이벤트 홍보/오시는길/게시판</p>
-						<p>제 가게 이양기는 제가 책임감있게 직접 이야기하고 싶었는데, modoo!에서 다 했어요<br />
-							어떤 재료로 만드는지, 새로 개발한 메뉴는 어떤 맛인지 <br />
-							손님들과 이야기를 나눌 수 있는 또다른 공간이 생긴 느낌이에요
-						</p>
+					<div class="swiper-slide video_page">
+						<video loop id="myVideo" class="video">
+							<source src="./assets/modoo_2.mp4" type="video/mp4">
+						</video>
 					</div>
 
+
 				</div>
-				<div class="ex2 slide">
-					<h2>누구나 쉽게 무료로 만드는 홈페이지</h2>
-					<p>PC는 물론 스마트폰에서 쉽게 만들고 편리하게 쓰는<br />
-						스마트 홈페이지, modoo! 지금 바로 시작하세요
-					</p>
-					<ul>
-						<li>
-							<a href="#">나도 시작하기</a>
-						</li>
-						<li>
-							<a href="#">사용방법 영상보기</a>
-						</li>
-					</ul>
-				</div>
-				<div class="ex3 slide">
-					<h2>누구나 쉽게 무료로 만드는 홈페이지</h2>
-					<p>PC는 물론 스마트폰에서 쉽게 만들고 편리하게 쓰는<br />
-						스마트 홈페이지, modoo! 지금 바로 시작하세요
-					</p>
-					<ul>
-						<li>
-							<a href="#">나도 시작하기</a>
-						</li>
-						<li>
-							<a href="#">사용방법 영상보기</a>
-						</li>
-					</ul>
-				</div>
-				<div class="ex4 slide">
-					<h2>누구나 쉽게 무료로 만드는 홈페이지</h2>
-					<p>PC는 물론 스마트폰에서 쉽게 만들고 편리하게 쓰는<br />
-						스마트 홈페이지, modoo! 지금 바로 시작하세요
-					</p>
-					<ul>
-						<li>
-							<a href="#">나도 시작하기</a>
-						</li>
-						<li>
-							<a href="#">사용방법 영상보기</a>
-						</li>
-					</ul>
-				</div>
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
 
 			</div>
+			<div class="section2_swiper page ex_background ">
 
+				<div class="fixed_ex_menu">
+					<div class="swiper-pagination"></div>
+
+				</div>
+				<div class="swiper-wrapper">
+					<div class="ex ex1 swiper-slide">
+						<div class="phone_wrap">
+							<div class="phone_img">
+								<img src="./assets/images/background/phone.png" alt="">
+							</div>
+							<div class="swiper_phone">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide item it1"></div>
+									<div class="swiper-slide item it1"></div>
+									<div class="swiper-slide item it1"></div>
+								</div>
+
+							</div>
+						</div>
+						<div class="example example01">
+							<h2 class="example_title" data-swiper-parallax="-1300">자주가는 동네 식당</h2>
+							<p class="example_des_title" data-swiper-parallax="-1300">메뉴안내/가격표/이벤트 홍보/오시는길/게시판</p>
+							<p class="example_des" data-swiper-parallax="-1300">제 가게 이양기는 제가 책임감있게 직접 이야기하고 싶었는데,
+								modoo!에서 다 했어요<br />
+								어떤 재료로 만드는지, 새로 개발한 메뉴는 어떤 맛인지 <br />
+								손님들과 이야기를 나눌 수 있는 또다른 공간이 생긴 느낌이에요
+							</p>
+						</div>
+
+					</div>
+					<div class="ex ex2 swiper-slide">
+						<div class="phone_wrap">
+							<div class="phone_img">
+								<img src="./assets/images/background/phone.png" alt="">
+							</div>
+							<div class="swiper_phone">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide item it2"></div>
+									<div class="swiper-slide item it2"></div>
+									<div class="swiper-slide item it2"></div>
+									<div class="swiper-slide item it2"></div>
+								</div>
+
+							</div>
+						</div>
+						<div class="example example02">
+							<h2 class="example_title" data-swiper-parallax="-1300">걸어갈 수 있는 동네 카페</h2>
+							<p class="example_des_title" data-swiper-parallax="-1300">가게소개/내부모습/메뉴안내/예약문의/오시는길</p>
+							<p class="example_des" data-swiper-parallax="-1300">제 가게 이양기는 제가 책임감있게 직접 이야기하고 싶었는데,
+								modoo!에서 다 했어요<br />
+								어떤 재료로 만드는지, 새로 개발한 메뉴는 어떤 맛인지 <br />
+								손님들과 이야기를 나눌 수 있는 또다른 공간이 생긴 느낌이에요
+							</p>
+						</div>
+
+					</div>
+					<div class="ex ex3 swiper-slide">
+						<div class="phone_wrap">
+							<div class="phone_img">
+								<img src="./assets/images/background/phone.png" alt="">
+							</div>
+							<div class="swiper_phone">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide item it3"></div>
+									<div class="swiper-slide item it3"></div>
+									<div class="swiper-slide item it3"></div>
+									<div class="swiper-slide item it3"></div>
+								</div>
+
+							</div>
+						</div>
+						<div class="example example03">
+							<h2 class="example_title" data-swiper-parallax="-1300">집 앞 반찬가게</h2>
+							<p class="example_des_title" data-swiper-parallax="-1300">가게소개/내부모습/메뉴안내/예약문의/오시는길</p>
+							<p class="example_des" data-swiper-parallax="-1300">좋은 재료로 정성껏, 깨끗하게 만들고 있습니다 반찬 종류도 매일 바꾸고요
+								<br />
+								처음 찾으시는 손님부터 단골손님까지 그날의 반찬 정보를 알릴 수 있고 인기 반찬은<br />
+								미리 주문도 받으니 편하더라고요. 저희 가게에도 홈페이지가 생기니 신기합니다
+							</p>
+						</div>
+					</div>
+					<div class="ex ex4 swiper-slide">
+						<div class="phone_wrap">
+							<div class="phone_img">
+								<img src="./assets/images/background/phone.png" alt="">
+							</div>
+							<div class="swiper_phone">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide item it4"></div>
+									<div class="swiper-slide item it4"></div>
+									<div class="swiper-slide item it4"></div>
+									<div class="swiper-slide item it4"></div>
+								</div>
+
+							</div>
+						</div>
+						<div class="example example04">
+							<h2 class="example_title" data-swiper-parallax="-1300">걸어갈 수 있는 동네 카페</h2>
+							<p class="example_des_title" data-swiper-parallax="-1300">가게소개/내부모습/메뉴안내/예약문의/오시는길</p>
+							<p class="example_des" data-swiper-parallax="-1300">제 가게 이양기는 제가 책임감있게 직접 이야기하고 싶었는데,
+								modoo!에서 다 했어요<br />
+								어떤 재료로 만드는지, 새로 개발한 메뉴는 어떤 맛인지 <br />
+								손님들과 이야기를 나눌 수 있는 또다른 공간이 생긴 느낌이에요
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+
+
+			</div>
+			<div class="swiper page">
+
+			</div>
 		</main>
+		<footer class="footer">
+			<div class="footer_wrap">
+				모두 이미지가 들어갈 장소!
+			</div>
+		</footer>
 	</div>
 
 
