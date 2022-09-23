@@ -58,6 +58,7 @@
   position: relative;
   width:100%;
   overflow: hidden;
+  background-color: black;
 }
 .video_page video{
   position: absolute;
@@ -66,4 +67,46 @@
   width: 100%;
   min-width: 100%;
   min-height: 100%;
+ }
+@media screen and (max-width:900px) {
+  .intro_cont {
+    left: 20px;
+  }
+  .intro_title {
+    font-size: 2em;
+  }
+  .intro_des {
+    font-size: 1em;
+    line-height: 20px;
+  }
+  .intro_button li {
+    font-size: 0.8em;
+  }
+  .intro_button a {
+   
+    padding: 10px 20px;
+  }
+  .inblock{
+    display:inline-block;
+    width: 100%;
+  }
 }
+@media screen and (max-width:320px) {
+  .intro_cont {
+    left: 5px;
+  }
+  .intro_title {
+    font-size: 1.5em;
+  }
+  .intro_des {
+    font-size: 0.7em;
+    line-height: 20px;
+  }
+  .intro_button li {
+    font-size: 0.6em;
+  }
+  .intro_button a {
+    padding: 10px 20px;
+  }
+  
+} 

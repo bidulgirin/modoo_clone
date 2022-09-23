@@ -36,7 +36,7 @@
     setup: function () {
       if (this.addEventListener) {
         for (var i = toBind.length; i; ) {
-          this.addEventListener(toBind[--i], handler, false);
+          this.addEventListener(toBind[--i], handler, { passive: false }); //경고로 인해 false -> {passive: false} 로 변경
         }
       } else {
         this.onmousewheel = handler;
@@ -50,7 +50,7 @@
     teardown: function () {
       if (this.removeEventListener) {
         for (var i = toBind.length; i; ) {
-          this.removeEventListener(toBind[--i], handler, false);
+          this.removeEventListener(toBind[--i], handler, { passive: false });
         }
       } else {
         this.onmousewheel = null;

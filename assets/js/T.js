@@ -1,52 +1,35 @@
 $(function () {
+  reSize();
+  const contents = $(".page");
   var ht = $(window).height(); //변수 ht에 윈도우의 높이값을 기억시켜라
-  $(".page").height(ht); //.sc 에다가 윈도우 높이값(ht)을 입력시켜라
+  contents.height(ht); //contents 에다가 윈도우 높이값(ht)을 입력시켜라
+  const fixed_right_menu = $(".fixed_right_menu li"); //스크롤 위치를 표시해줄 애들
 
-  $(window).on("resize", function () {
-    //윈도우 사이즈가 조절되거든$(window).resize(function(){}); 같은 의미의 문법이다
-
+  //resize
+  function reSize() {
+    const contents = $(".page");
     ht = $(window).height(); //변수 ht에 윈도우의 높이값을 기억시켜라
-    $(".page").height(ht);
-  });
-
-  //메뉴 클릭시 부드럽게 스크롤
-  $("#menu li").on("click", function (e) {
-    //a를 e매개변수에 기억시킨다
-    //$('#menu li').click(function(){}); 와 같은 의미이다
-    e.preventDefault(); //브라우저 구현에 의해 처리되는 기존의 동작을 멈추어라
-    var i = $(this).index(); // 메뉴의 일련번호를(0,1,2,3) 구함!
-    var nowTop = i * ht; //현재 top의 값이 i*ht가 된다 /이동할 거리값 구하기
-    $("html, body").stop().animate(
+    contents.height(ht);
+  }
+  //menumove function
+  function moveContent(e) {
+    const body = $("html, body");
+    const elem = $(this);
+    e.preventDefault();
+    let i = elem.index(); // 메뉴의 일련번호를(0,1,2,3) 구함!
+    let nowTop = i * ht; //현재 top의 값이 i*ht가 된다 /이동할 거리값 구하기
+    body.stop().animate(
       {
         scrollTop: nowTop,
       },
       1000
     ); //animate({속성:값},시간);
-  });
-  //클릭시
-  // const fixed_char_menu = $(".fixed_ex_menu ul li");
-
-  // fixed_char_menu.on("click", function (e) {
-  //   e.preventDefault(); //브라우저 구현에 의해 처리되는 기존의 동작을 멈추어라
-  //   let idx = fixed_char_menu.index(this);
-
-  //   if (fixed_char_menu.hasClass("on") == true) {
-  //     fixed_char_menu.each(function (e) {
-  //       $(this).removeClass("on");
-  //       fixed_char_menu.eq(idx).addClass("on");
-  //     });
-  //   } else {
-  //     fixed_char_menu.each(function (e) {
-  //       fixed_char_menu.eq(idx).addClass("on");
-  //     });
-  //   }
-  // });
-
-  //메뉴의 포커스 설정
-  $(window).scroll(function () {
+  }
+  //scrolled page add,remove classList
+  function pageScrollClassOn() {
+    const contents = $(".page");
     var sct = $(window).scrollTop(); //스크롤 된 화면의 top의 값을 구하여 sct변수에 기억하라
-    var menu = $("#menu li");
-    var contents = $(".page");
+    var menu = $(".fixed_right_menu li");
 
     if (sct >= contents.eq(0).offset().top) {
       //offset() 특정 값의 좌표(x,y)값 찾기 /그영역의 top을 구한다
@@ -57,53 +40,61 @@ $(function () {
       menu.removeClass("on");
       menu.eq(1).addClass("on");
     }
-  });
+  }
+  //onWheel
+  function upDownWheel(event) {
+    const body = $("html, body");
+    const elem = $(this);
+    const upWheel = elem.prev().offset(); // 자주 undefined가 됨
+    const downWheel = elem.next().offset();
+    const footer = $(".footer");
 
-  //마우스 휠움직일때 부드럽게 이동할거에요
-  $(window).on("scroll", function () {
-    $(".page").mousewheel(function (event, delta) {
-      const body = $("html, body");
-      const elem = $(this);
-      const upWheel = elem.prev().offset(); //offset() : 특정값의 좌표 (x,y)의 위치값을 찾는다
-      const downWheel = elem.next().offset();
-      const footer = $(".footer");
-      //마우스 휠을 하면~
-      if (delta > 0) {
-        //마우스 휠을 위쪽으로 드래그 ↑
-        if (upWheel) {
-          var prev = upWheel.top;
+    if (event.originalEvent.deltaY < 0) {
+      // 현재 작동하고 있는 이벤트를 가져온다
+      if (upWheel) {
+        var prev = upWheel.top;
+        if (prev > 0) {
+          //top이 0인 상황에서 upWheel을 하면 튕겨져 내려가는 현상해결
+          body.stop().animate({
+            scrollTop: 0,
+          });
+        } else {
           body.stop().animate(
             {
               scrollTop: prev,
             },
             300
           );
-
-          footer.stop().animate(
-            {
-              bottom: 0,
-            },
-            600
-          );
-        }
-      } else if (delta < 0) {
-        if (downWheel) {
-          var next = downWheel.top;
-          body.stop().animate(
-            {
-              scrollTop: next,
-            },
-            300
-          );
-          footer.stop().css("bottom", "-140px");
-          footer.stop().animate(
-            {
-              bottom: 0,
-            },
-            700
-          );
         }
       }
-    });
-  });
+      //down
+    } else if (event.originalEvent.deltaY > 0) {
+      if (downWheel) {
+        var next = downWheel.top;
+        body.stop().animate(
+          {
+            scrollTop: next,
+          },
+          300
+        );
+        footer.stop().css("bottom", "-140px");
+        footer.stop().animate(
+          {
+            bottom: 0,
+          },
+          700
+        );
+      }
+    }
+  }
+  //scroll entire event
+  function mouseWheelUpDown() {
+    const contents = $(".page");
+    pageScrollClassOn();
+    contents.bind("wheel", upDownWheel);
+  }
+
+  $(window).on("resize load", reSize);
+  fixed_right_menu.on("click", moveContent);
+  $(window).on("scroll", mouseWheelUpDown);
 });

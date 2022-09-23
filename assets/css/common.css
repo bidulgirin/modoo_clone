@@ -19,11 +19,16 @@ body {
   font-weight: 400;
 }
 .wrapper {
+  position: relative;
   width: 100%;
   overflow: hidden;
   background: rgb(243, 237, 237);
 }
+.page{
+  overflow: hidden;
+}
 .header {
+  min-width:1400px;
   position: fixed;
   z-index: 999;
   width: 100%;
@@ -100,6 +105,23 @@ body {
   font-size: 0.8em;
   color: white;
 }
+.fixed_right_menu{
+  position:fixed;
+  z-index: 11;
+  right:10px;
+  top:70px;
+}
+.fixed_right_menu li{
+  width:20px;
+  height:20px;
+  border-radius: 50%;
+  margin-top:10px;
+  background: rgba(255, 255, 255, 0.488);
+  cursor: pointer;
+}
+.fixed_right_menu li.on{
+  background: rgb(255, 255, 255);
+}
 /*footer style*/
 .footer {
   position: fixed;
@@ -119,11 +141,17 @@ body {
   align-items: center;
   justify-content: center;
 }
+.footer_wrap img{
+  width:90%;
+  max-width: 1200px;
+  margin:0 auto;
+}
 /*swiper 초기화*/
 .swiper {
+  position:relative;
   width: 100%;
-  margin: 0 auto;
   height: 100vh;
+  margin: 0 auto;
 }
 .swiper-button{
   width:400px !important;
@@ -143,4 +171,11 @@ body {
 .swiper-button-next::after,
 .swiper-button-prev::after {
   display: none;
+}
+
+@media screen and (max-width:900px) {
+  .footer {
+   
+    height: auto;
+  }
 }
