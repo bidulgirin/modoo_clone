@@ -1,8 +1,8 @@
 $(function () {
-  reSize();
   const contents = $(".page");
   var ht = $(window).height(); //변수 ht에 윈도우의 높이값을 기억시켜라
   contents.height(ht); //contents 에다가 윈도우 높이값(ht)을 입력시켜라
+  console.log(contents.height(ht));
   const fixed_right_menu = $(".fixed_right_menu li"); //스크롤 위치를 표시해줄 애들
 
   //resize
@@ -11,6 +11,7 @@ $(function () {
     ht = $(window).height(); //변수 ht에 윈도우의 높이값을 기억시켜라
     contents.height(ht);
   }
+  reSize();
   //menumove function
   function moveContent(e) {
     const body = $("html, body");
