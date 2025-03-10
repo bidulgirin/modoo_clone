@@ -12,7 +12,8 @@ function isMobile() {
   }
 }
 
-if (isMobile()) {
+if (!isMobile()) {
+  location.href = "../index.html";
 } else {
-  location.href = "/index.html"; //PC용 페이지
+  //PC용 페이지
 }

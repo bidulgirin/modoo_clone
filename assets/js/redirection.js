@@ -13,5 +13,6 @@ function isMobile() {
 }
 
 if (isMobile()) {
-  location.href = "/mobile/index.html"; //모바일페이지
+  location.href = "./mobile/index.html"; //모바일페이지
+} else {
 }

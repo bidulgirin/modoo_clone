@@ -1,0 +1,39 @@
+.header .gnb {
+  display: none;
+}
+.main_wrap {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  text-align: center;
+  vertical-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(2, 2, 2);
+  color: white;
+}
+.main_wrap h2{
+  width:90%;
+  max-width:1200px;
+  margin:0 auto;
+  line-height:30px;
+}
+
+.back {
+  padding: 10px 0px;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 90%;
+  max-width: 300px;
+  border-radius: 1px;
+  cursor: pointer;
+  background-color: #00d600;
+}
+.back:hover {
+  color: rgba(255, 255, 255, 0.552);
+}
+
+  .main_wrap h2 > span{
+    display:inline-block;
+    width:100%;
+  }
